@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block main %}
+<form class="mx-auto w-50 p-2" action="/sell" method="post">
+    <div class="form-group">
+
+        <select class="form-control selectpicker" required>
+            <option disabled selected>Condition</option>
+            {% for condition in conditions %}
+            <option> {{condition['condition_name'].title()}} </option>
+            {% endfor%}
+        </select>
+    </div>
+    <div class="form-group">
+        <select class="form-control selectpicker" required>
+            <option disabled selected>Make</option>
+            {% for make in makes%}
+            <option> {{make}}</option>
+            {% endfor%}
+        </select>
+    </div>
+    <div class="form-group">
+        <input autocomplete="off" autofocus class="form-control" name="model" placeholder="Model" type="text" required>
+    </div>
+    <div class="form-group">
+        <select class="form-control selectpicker">
+            <option disabled selected>Type</option>
+            <option>Sport</option>
+            <option>Cruiser</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <select class="form-control selectpicker">
+            <option disabled selected>Year</option>
+            {% for i in range(2020 , 1900, -1) %}
+            <option>{{i}}</option>
+            {%endfor%}
+        </select>
+    </div>
+    <div class="form-group">
+        <input autocomplete="off" class="form-control" name="price" placeholder="Price €" type="number" required>
+    </div>
+    <div class="form-group">
+        <input autocomplete="off" class="form-control" name="milage" placeholder="Milage KM" type="number" required>
+    </div>
+    <div class="form-group">
+        <input autocomplete="off" class="form-control" name="hp" placeholder="Horsepower" type="number" required>
+    </div>
+    <div class="form-group">
+        <select class="form-control selectpicker">
+            <option disabled selected>Color</option>
+            <option>Red</option>
+            <option>Black</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="file" class="form-control-file" required>
+    </div>
+    <div class="form-group">
+        <textarea class="form-control" rows="3" placeholder="Description" required></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Publish</button>
+</form>
+
+
+{% endblock%}
