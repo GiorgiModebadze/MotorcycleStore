@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block main %}
+{% for advertisment in advertisments %}
+<div class="card mb-3">
+    <div class="card-header">
+        <h5 class="card-title">{{advertisment['condition']}} - {{ advertisment['make']}} </h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <img class="card-img-top" src="static/images/{{ advertisment.picture_name }}" alt="Moto Image">
+        </div>
+        <div class="col-sm-4">
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>Model :</b> {{advertisment['model']}}</li>
+                    <li class="list-group-item"><b>Category :</b> {{advertisment['category']}}</li>
+                    <li class="list-group-item"><b>Price :</b> {{advertisment['price']}} €</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>Milage :</b> {{advertisment['milage']}} KM</li>
+                    <li class="list-group-item"><b>Horsepower :</b> {{advertisment['hp']}}</li>
+                    <li class="list-group-item"><b>Color :</b> {{advertisment['color']}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <form action="my_advertisments" method="post">
+            <input type="hidden" name="adv_id" value="{{advertisment['uid']}}" />
+            <button class="btn btn-danger" type="submit">Remove</button>
+        </form>
+    </div>
+    <small class="text-muted">From : {{advertisment['created_at']}}</small>
+</div>
+</div>
+{%endfor%}
+{% endblock%}

@@ -2,3 +2,5 @@ venv
 GiorgiModebadze
 .DS_Store
 .vscode/settings.json
+static/images
+__pycache__

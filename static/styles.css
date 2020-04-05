@@ -41,3 +41,18 @@ main img {
     /* constrain images on small screens */
     max-width: 100%;
 }
+
+.card-columns {
+    @include media-breakpoint-only(lg) {
+        column-count: 3;
+    }
+
+    @include media-breakpoint-only(xl) {
+        column-count: 5;
+    }
+}
+
+.card-img-top {
+    width: auto;
+    height: 200px;
+}

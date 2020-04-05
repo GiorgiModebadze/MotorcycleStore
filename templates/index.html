@@ -1,5 +1,76 @@
 {% extends "layout.html" %}
 
 {% block main %}
-<p>Hello World</p>
+<p>
+    <a class="btn btn-info" data-toggle="collapse" href="#searchbutton" role="button" aria-expanded="false"
+        aria-controls="collapseExample">
+        Search
+    </a>
+    {% if searched == 1%}
+    <form action="/" method="post">
+        <input class="btn btn-warning" type="submit" name="clearsearch" value="Clear Search" />
+    </form>
+    {%endif%}
+</p>
+<div class="collapse p-2" id="searchbutton">
+    <form class="mx-auto w-30 p-2" action="/" method="post">
+        <div class="card card-body">
+            <div class="form-group">
+                <select class="form-control selectpicker" required autocomplete="on" name="make">
+                    <option disabled selected>Make</option>
+                    {% for make in search_makes%}
+                    <option value="{{make}}"> {{make}}</option>
+                    {% endfor%}
+                </select>
+            </div>
+            <button class="btn btn-primary  btn-sm" type="submit">Submit Search</button>
+        </div>
+    </form>
+</div>
+{% for advertisment in advertisments %}
+<div class="card mb-3">
+    <div class="card-header">
+        <h5 class="card-title">{{advertisment['condition']}} - {{ advertisment['make']}} </h5>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <img class="card-img-top" src="static/images/{{ advertisment.picture_name }}" alt="Moto Image">
+        </div>
+        <div class="col-sm-4">
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>Model :</b> {{advertisment['model']}}</li>
+                    <li class="list-group-item"><b>Category :</b> {{advertisment['category']}}</li>
+                    <li class="list-group-item"><b>Price :</b> {{advertisment['price']}} €</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>Milage :</b> {{advertisment['milage']}} KM</li>
+                    <li class="list-group-item"><b>Horsepower :</b> {{advertisment['hp']}}</li>
+                    <li class="list-group-item"><b>Color :</b> {{advertisment['color']}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <a class="btn btn-primary btn-sm" data-toggle="collapse" href="#abc{{advertisment['uid']}}" role="button"
+            aria-expanded="false" aria-controls="{{advertisment['uid']}}">
+            Contact
+        </a>
+
+        <div class="collapse" id="abc{{advertisment['uid']}}">
+            <li class="list-group-item"><b>User :</b> {{advertisment['username']}}</li>
+            <li class="list-group-item"><b>Phone :</b> {{advertisment['phone_number']}}</li>
+            <li class="list-group-item"><b>Email :</b> {{advertisment['email']}}</li>
+            </ul>
+        </div>
+
+    </div>
+    <small class="text-muted">From : {{advertisment['created_at']}}</small>
+</div>
+</div>
+{%endfor%}
 {% endblock%}

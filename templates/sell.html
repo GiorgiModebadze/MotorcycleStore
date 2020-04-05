@@ -1,66 +1,89 @@
 {% extends "layout.html" %}
 
 {% block main %}
-<form class="mx-auto w-50 p-2" action="/sell" method="post">
+<form class="mx-auto w-50 p-2" action="/sell" method="post" enctype="multipart/form-data">
     <div class="form-group">
-
-        <select class="form-control selectpicker" required>
+        <select class="form-control selectpicker" required name="condition">
             <option disabled selected>Condition</option>
             {% for condition in conditions %}
-            <option> {{condition['condition_name'].title()}} </option>
+            <option value="{{condition['condition_name']}}"> {{condition['condition_name'].title()}} </option>
             {% endfor%}
         </select>
     </div>
+
     <div class="form-group">
-        <select class="form-control selectpicker" required>
+        <select class="form-control selectpicker" required autocomplete="on" name="make">
             <option disabled selected>Make</option>
             {% for make in makes%}
-            <option> {{make}}</option>
+            <option value="{{make['make']}}"> {{make['make']}}</option>
             {% endfor%}
         </select>
     </div>
+
     <div class="form-group">
-        <input autocomplete="off" autofocus class="form-control" name="model" placeholder="Model" type="text" required>
+        <select class="form-control selectpicker" required autocomplete="on" name="model" id="model">
+            <option disabled selected>Model</option>
+        </select>
     </div>
     <div class="form-group">
-        <select class="form-control selectpicker">
-            <option disabled selected>Type</option>
-            <option>Sport</option>
-            <option>Cruiser</option>
+        <select class="form-control selectpicker" name="category">
+            <option disabled selected>Category</option>
+            {%for category in categories %}
+            <option value="{{category['category'] }}"> {{category['category'] }} </option>
+            {% endfor %}
         </select>
     </div>
     <div class="form-group">
         <select class="form-control selectpicker">
             <option disabled selected>Year</option>
             {% for i in range(2020 , 1900, -1) %}
-            <option>{{i}}</option>
+            <option value="{{i}}">{{i}}</option>
             {%endfor%}
         </select>
     </div>
     <div class="form-group">
-        <input autocomplete="off" class="form-control" name="price" placeholder="Price €" type="number" required>
+        <input autocomplete="off" min="0" class="form-control" name="price" placeholder="Price €" type="number"
+            required>
     </div>
     <div class="form-group">
-        <input autocomplete="off" class="form-control" name="milage" placeholder="Milage KM" type="number" required>
+        <input autocomplete="off" min="0" class="form-control" name="milage" placeholder="Milage KM" type="number"
+            required>
     </div>
     <div class="form-group">
-        <input autocomplete="off" class="form-control" name="hp" placeholder="Horsepower" type="number" required>
+        <input autocomplete="off" min="0" class="form-control" name="hp" placeholder="Horsepower" type="number"
+            required>
     </div>
     <div class="form-group">
-        <select class="form-control selectpicker">
+        <select class="form-control selectpicker" required name="color">
             <option disabled selected>Color</option>
-            <option>Red</option>
-            <option>Black</option>
+            {% for color in colors%}
+            <option value="{{color['color']}}">{{color['color']}}</option>
+            {% endfor%}
         </select>
     </div>
     <div class="form-group">
-        <input type="file" class="form-control-file" required>
+        <input type="file" class="form-control-file" name="picture" accept="image/*" required>
     </div>
     <div class="form-group">
-        <textarea class="form-control" rows="3" placeholder="Description" required></textarea>
+        <textarea class="form-control" rows="3" placeholder="Description" name="description"></textarea>
     </div>
     <button class="btn btn-primary" type="submit">Publish</button>
 </form>
 
+<script>
+    var make = document.getElementsByName("make")[0]
+    var models = ' {{ models }}'.replace(/&#39;/g, '').replace("[", "").replace("]", "").split(",")
+    var model_selector = document.getElementsByName('model')[0]
+    make.addEventListener("change", function () {
+        $("#model").empty();
 
-{% endblock%}
+        for (var i = 0; i < models.length; i++) {
+            var mk = models[i].split(':')[1].trim()
+            var md = models[i].split(':')[0].trim()
+            if (mk === make.selectedOptions[0].text) {
+                model_selector.options[model_selector.options.length] = new Option(md, md);
+                model_selector.options
+            }
+        }
+    });
+</script> {% endblock%}
