@@ -13,7 +13,7 @@ Users Also have ability to register. To register one must provide their
 
 This information is displayed in the contacts information of each advertisment.
 
-Web app gives different options once you are logged in. First of all you are able to create advertisment by clicking on the sell option in navbar. This page displayes form which must be filled. After succesfully filling the form advertisment is displayed on the webpage. 
+Web app gives different options once you are logged in. First of all you are able to create advertisment by clicking on the sell option in navbar. This page displayes form which must be filled. After succesfully filling the form advertisment is displayed on the webpage.  Remarkable feature in this is that after choosing a make, specific models are displayed automatically for this make. This was done using JS
 Users also can manage their advertisment. More particularly remove them.
 
 User can also change password anytime
@@ -36,3 +36,22 @@ User can also change password anytime
 4) __Log In__ - After Login users will be able to checkout their advertisments and do modifications to them
 5) __Expiration__ - Each advertisment will have expiration date after which they wont show up anymore
 
+# Screenshots 
+1) Main Page
+   ![Main](/screenshots/MainPage.png)
+2) Clear Search
+    ![Clear Search](/screenshots/clear_search.png)
+3) Search
+![search](/screenshots/search.png)
+
+ 4) Register
+ ![register](/screenshots/Register.png)
+
+5) My advertisments
+ ![My_advs](/screenshots/My_advs.png)
+
+ 6) Sell Form
+![My_advs](/screenshots/Sell_form.png)
+
+
+ 
