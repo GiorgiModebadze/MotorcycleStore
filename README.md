@@ -2,6 +2,22 @@
 
 The Goal of This Project is to created a Online Market For Motorcycles, where users will be able to post advertisments about their motorcycles they want to sell and also check out other peoples posts.  
 
+If you do not create and log in you will be able to check advertisments by other users. Each Advertisment contains certain information as stated in features and one picture. On top of the application there is a toggable search box which allows users to search for the specific bikes. After search is submitted new button is created which allows cleanup of the search results.
+
+Users Also have ability to register. To register one must provide their 
+1) username
+2) phone number (not mandatory)
+3) email (mandatory)
+4) password
+5) password confirmation
+
+This information is displayed in the contacts information of each advertisment.
+
+Web app gives different options once you are logged in. First of all you are able to create advertisment by clicking on the sell option in navbar. This page displayes form which must be filled. After succesfully filling the form advertisment is displayed on the webpage. 
+Users also can manage their advertisment. More particularly remove them.
+
+User can also change password anytime
+
 ## Features
 1) __Advertisments__ - The key feature for this project will be the homepage which will display all currently available advertisments.  Each advertisment will have following data fields
     * Condition  : [New, Used]
